@@ -46,14 +46,14 @@ namespace windows10_home_control
                 }
             });
 
-            Task.Factory.StartNew(async () =>
+            /*Task.Factory.StartNew(async () =>
             {
                 while (true)
                 {
                     await Core.Devices.StateControl();
                     await Task.Delay(5000);
                 }
-            });
+            });*/
         }
         private async void button_Click(object sender, RoutedEventArgs e)
         {
@@ -75,6 +75,12 @@ namespace windows10_home_control
         {
             if (toggleSwitch1.IsOn == true) { await Core.Devices.turnOn(25); }
             else { await Core.Devices.turnOff(25); }
+        }
+
+        private async void button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var Response = await i2c_protocol.WriteRead(0x40, (byte)Communication.i2c_protocol.Mode.Mode1, 13, 1);
+            textBlock.Text = (BitConverter.ToUInt32(Response, 9).ToString());
         }
     }
 }
