@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="windows10_home_control.Pages.LockScreen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:windows10_home_control.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Unloaded="Page_Unloaded" Loaded="Page_Loaded"
+    Height="552" Width="964">
+
+    <Grid Background="#FF2B2B2B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="60"/>
+        </Grid.ColumnDefinitions>
+        <RelativePanel Grid.Row="0" Grid.Column="0">
+            <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True"
+                       TextAlignment="Center"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="Segoe MDL2 Assets"
+                       RequestedTheme="Dark" Name="TimeDate">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#FF7C7C7C" Offset="0.19"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            <Run x:Name="TimeOnLock" FontSize="120">22:37</Run>
+            <LineBreak/>
+            <Run x:Name="DateOnLock" FontSize="60">12.08.2016</Run>
+            </TextBlock>
+            <StackPanel RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,340,0,-340"
+                        Name="waitprogress" Visibility="Collapsed">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                           RequestedTheme="Dark" FontSize="24">
+                Ожидание карты доступа
+                </TextBlock>
+                <ProgressBar IsIndeterminate="True" Margin="0,10" RequestedTheme="Dark">
+                </ProgressBar>
+            </StackPanel>
+            <StackPanel RelativePanel.AlignBottomWithPanel="True"
+                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                        Name="UnlockButton" Tapped="UnlockButton_Tapped"
+                        >
+                <Border CornerRadius="30" BorderThickness="3">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                            <GradientStop Color="White" Offset="1"/>
+                            <GradientStop Color="#FF7C7C7C" Offset="0.19"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <TextBlock  FontFamily="Segoe MDL2 Assets" FontSize="80"
+                                Text="&#xE928;">
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                <GradientStop Color="White" Offset="1"/>
+                                <GradientStop Color="#FF7C7C7C" Offset="0.19"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                </Border>
+                <!--<FlyoutBase.AttachedFlyout>
+                    <Flyout x:Name="unLock" Placement="Top">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                           FontSize="24"
+                                           >Ожидание RFID карты
+                        </TextBlock>
+                    </Flyout>
+                </FlyoutBase.AttachedFlyout>-->
+            </StackPanel>
+        </RelativePanel>
+    </Grid>
+</Page>
