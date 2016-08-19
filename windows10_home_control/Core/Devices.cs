@@ -15,6 +15,7 @@ namespace windows10_home_control.Core
 {
     class Devices
     {
+        //public static uint rFidId;
         public static async Task turnOn(byte Pin)
         {
             var Response = await i2c_protocol.WriteRead(0x40, (byte)Communication.i2c_protocol.Mode.Mode2, Pin, 1);
@@ -25,7 +26,12 @@ namespace windows10_home_control.Core
         }
         public static async Task <byte[]> StateControl()
         {
-            var Response = i2c_protocol.WriteRead(0x40, (byte)Communication.i2c_protocol.Mode.Mode1, 13, 1).Result;
+            var Response = i2c_protocol.WriteRead(0x40, (byte)Communication.i2c_protocol.Mode.Mode1).Result;
+            return Response;
+        }
+        public static async Task<byte[]> rfidControl()
+        {
+            var Response = i2c_protocol.WriteRead(0x40, (byte)Communication.i2c_protocol.Mode.Mode0).Result;
             return Response;
         }
     }

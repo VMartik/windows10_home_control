@@ -17,6 +17,9 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>windows10_home_control_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -101,6 +104,51 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20160721101129_configDB1.cs" />
+    <Compile Include="Migrations\20160721101129_configDB1.designer.cs">
+      <DependentUpon>20160721101129_configDB1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160812205505_configDB2.cs" />
+    <Compile Include="Migrations\20160812205505_configDB2.designer.cs">
+      <DependentUpon>20160812205505_configDB2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160812205721_configDB3.cs" />
+    <Compile Include="Migrations\20160812205721_configDB3.designer.cs">
+      <DependentUpon>20160812205721_configDB3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160816160129__configDB4.cs" />
+    <Compile Include="Migrations\20160816160129__configDB4.designer.cs">
+      <DependentUpon>20160816160129__configDB4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160816184320__configDB5.cs" />
+    <Compile Include="Migrations\20160816184320__configDB5.designer.cs">
+      <DependentUpon>20160816184320__configDB5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160816184445__configDB6.cs" />
+    <Compile Include="Migrations\20160816184445__configDB6.designer.cs">
+      <DependentUpon>20160816184445__configDB6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160816185214__configDB7.cs" />
+    <Compile Include="Migrations\20160816185214__configDB7.designer.cs">
+      <DependentUpon>20160816185214__configDB7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\DeviceConfigDBModelSnapshot.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="Pages\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LockScreen.xaml.cs">
+      <DependentUpon>LockScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Music.xaml.cs">
+      <DependentUpon>Music.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Security.xaml.cs">
+      <DependentUpon>Security.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +166,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Resources\IMG\Wallpaper\home_wallpaper.jpg" />
     <Content Include="Resources\IMG\Wallpaper\Ultimate-Material-Lollipop-Collection-225.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -129,14 +178,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LockScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Music.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Security.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="WindowsIoT, Version=10.0.10240.0">
+    <Folder Include="Pages\Security\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsIoT, Version=10.0.10586.0">
       <Name>Windows IoT Extensions for the UWP</Name>
     </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

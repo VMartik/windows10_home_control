@@ -5,22 +5,178 @@
     xmlns:local="using:windows10_home_control"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
+    mc:Ignorable="d"
+    Width="1024" Height="600">
     <Grid>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Resources\IMG\Wallpaper\Ultimate-Material-Lollipop-Collection-225.jpg"/>
-        </Grid.Background>
-        <ToggleSwitch x:Name="toggleSwitch" Header="Реле1" HorizontalAlignment="Left" Margin="45,25,0,0" VerticalAlignment="Top" Toggled="toggleSwitch_Toggled" Height="60" Width="154"/>
-        <ToggleSwitch x:Name="toggleSwitch1" Header="Реле2" HorizontalAlignment="Left" Margin="45,85,0,0" VerticalAlignment="Top" Toggled="toggleSwitch1_Toggled" Height="60" Width="154"/>
-        <ToggleSwitch x:Name="toggleSwitch2" Header="Реле3" HorizontalAlignment="Left" Margin="45,145,0,0" VerticalAlignment="Top" Height="60" Width="154"/>
-        <ToggleSwitch x:Name="toggleSwitch3" Header="Реле4" HorizontalAlignment="Left" Margin="45,205,0,0" VerticalAlignment="Top" Height="60" Width="154"/>
-        <ToggleSwitch x:Name="toggleSwitch4" Header="Реле5" HorizontalAlignment="Left" Margin="45,265,0,0" VerticalAlignment="Top" Height="60" Width="154"/>
-        <ToggleSwitch x:Name="toggleSwitch5" Header="Реле6" HorizontalAlignment="Left" Margin="45,325,0,0" VerticalAlignment="Top" Height="60" Width="154"/>
-        <ToggleSwitch x:Name="toggleSwitch6" Header="Реле7" HorizontalAlignment="Left" Margin="45,385,0,0" VerticalAlignment="Top" Height="60" Width="154"/>
-        <ToggleSwitch x:Name="toggleSwitch7" Header="Реле8" HorizontalAlignment="Left" Margin="45,445,0,0" VerticalAlignment="Top" Height="60" Width="154"/>
-        <TextBlock x:Name="textBlock_Time" HorizontalAlignment="Left" Margin="350,25,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="185" Height="20"/>
-        <TextBlock x:Name="textBlock_Date" HorizontalAlignment="Left" Margin="350,70,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="185" Height="20"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="350,130,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="20" Width="62"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Button Name="HamburgerButton"
+                    Width="60"
+                    Height="60"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="36"
+                    Content="&#xE700;" Click="HamburgerButton_Click" RequestedTheme="Dark"
+                    Background="#FF2B2B2B"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0" Name="SecurityPanel" 
+                    Orientation="Horizontal">
+            <ListBox SelectionMode="Single" Name="SecurityList"
+                     SelectionChanged="SecurityList_SelectionChanged">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE1F6;"/>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+            <ListBox SelectionMode="Single" Name="MusicList" Visibility="Collapsed"
+                     SelectionChanged="MusicList_SelectionChanged">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBoxItem>
+                </ListBoxItem>
+                <ListBoxItem>
+                </ListBoxItem>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="0" Background="#FF2B2B2B">
+            <TextBlock Name="TimeDate" Grid.Row="0" 
+                   TextAlignment="Center" 
+                   RelativePanel.AlignRightWithPanel="True"
+                   Margin="5,5,5,5"
+                   FontFamily="Segoe MDL2 Assets"
+                   FontSize="18"
+                   RequestedTheme="Dark"
+                   >
+            <Run Text="22:10" x:Name="TimeLine"/>
+            <LineBreak/>
+            <Run Text="27.07.2016" x:Name="DateLine"/>
+            </TextBlock>
+        </StackPanel>
+        <!--<RelativePanel Name="TopPanel" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                       Background="#FF2B2B2B">
+            <Button Name="HamburgerButton"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    Width="60"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="36"
+                    Content="&#xE700;" Click="HamburgerButton_Click" RequestedTheme="Dark"
+                    Background="#FF2B2B2B"
+                    />
+            <TextBlock Name="PageTitle"
+                    RelativePanel.RightOf="HamburgerButton"
+                    RelativePanel.AlignVerticalCenterWith="HamburgerButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="36"
+                    FontWeight="Bold"
+                    RequestedTheme="Light"></TextBlock>
+        <TextBlock Name="TimeDate" Grid.Row="0" 
+                   TextAlignment="Center" 
+                   RelativePanel.AlignRightWithPanel="True"
+                   Margin="5,5,5,5"
+                   FontFamily="Segoe MDL2 Assets"
+                   FontSize="18"
+                   RequestedTheme="Dark"
+                   >
+            <Run Text="22:10" x:Name="TimeLine"/>
+            <LineBreak/>
+            <Run Text="27.07.2016" x:Name="DateLine"/>
+        </TextBlock>
+        </RelativePanel>-->
+        <SplitView Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3"
+                   Name="MainPageSplitView"
+                   DisplayMode="CompactOverlay"
+                   OpenPaneLength="220"
+                   CompactPaneLength="60">
+            <SplitView.Pane>
+                <RelativePanel Background="#FF2B2B2B">
+                    <StackPanel Name="MainPanel">
+                        <ListBox SelectionMode="Single"
+                         SelectionChanged="ListBox_SelectionChanged" RequestedTheme="Dark" Background="#FF2B2B2B">
+                            <ListBoxItem Name="Hamburger_Home">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE80F;"/>
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Margin="10,0,0,0">Главная</TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="Hamburger_Music">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE189;"/>
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Margin="10,0,0,0">Музыка</TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="Hamburger_Weather">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE753;"/>
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Margin="10,0,0,0">Погода</TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="Hamburger_Security">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE730;"/>
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Margin="10,0,0,0">Безопасность</TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="Hamburger_Settings">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE713;"/>
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Margin="10,0,0,0">Настройки</TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel RelativePanel.AlignBottomWithPanel="True">
+                        <ListBox SelectionMode="Single" IsEnabled="{Binding ElementName=enabledButton, Path=IsChecked}"
+                         SelectionChanged="ListBox_SelectionChanged" RequestedTheme="Dark">
+                            <ListBoxItem Name="PowerButton" Tapped="PowerButton_Tapped" Background="{x:Null}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE7E8;"/>
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Margin="10,0,0,0">Выключение</TextBlock>
+                                </StackPanel>
+                                <FlyoutBase.AttachedFlyout>
+                                    <Flyout x:Name="Shutdown_FlyOut" Placement="Top">
+                                        <ListBox SelectionMode="Single"
+                                                 RequestedTheme="Dark">
+                                            <ListBoxItem Name="AlarmOn" Tapped="AlarmOn_Tapped">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24">Заблокировать</TextBlock>
+                                                </StackPanel>
+                                            </ListBoxItem>
+                                            <ListBoxItem Name="PiRestart" Tapped="PiRestart_Tapped">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24">Перезагрузка</TextBlock>
+                                                </StackPanel>
+                                            </ListBoxItem>
+                                            <ListBoxItem Name="PiShutdown" Tapped="PiShutdown_Tapped">
+                                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24">Выключение</TextBlock>
+                                            </ListBoxItem>
+                                        </ListBox>
+                                    </Flyout>
+                                </FlyoutBase.AttachedFlyout>
+                            </ListBoxItem>
+                        </ListBox>
+                    </StackPanel>
+                </RelativePanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame Name="MainFrame"/>
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 </Page>

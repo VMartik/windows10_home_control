@@ -17,7 +17,9 @@ namespace windows10_home_control.Communication
         public enum Mode : byte
         {
             Mode0 = 0,
-
+            /// <summary>
+            /// Опрашивает состояние всех дискретных и аналоговых пинов, сравнивает значение с данными в DB
+            /// </summary>
             Mode1 = 1,
             /// <summary>
             /// Передает IO сигнал на Arduino и получает подтверждение об успешном установлении
@@ -27,7 +29,7 @@ namespace windows10_home_control.Communication
 
         public static async Task<byte[]> WriteRead(int I2C_Slave_Address, byte ControlMode, byte Pin = 0, byte PinValue = 0)
         {
-            byte[] Response = new byte[14];
+            byte[] Response = new byte[20];
 
             try
             {

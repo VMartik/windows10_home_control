@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.EntityFrameworkCore;
 
 namespace windows10_home_control
 {
@@ -30,6 +31,11 @@ namespace windows10_home_control
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            using (var db = new DeviceConfigDB())
+            {
+                db.Database.Migrate();
+            }
         }
 
         /// <summary>
@@ -42,7 +48,7 @@ namespace windows10_home_control
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                //this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
